@@ -1,0 +1,21 @@
+/* Structure of Linked List Node
+class Node {
+  public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+    void deleteNode(Node* x) {
+        Node* temp = x -> next;
+        x -> data = temp -> data;
+        x -> next = temp -> next;
+        delete temp;
+    }
+};
