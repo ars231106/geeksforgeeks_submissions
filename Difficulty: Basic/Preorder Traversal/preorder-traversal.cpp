@@ -14,19 +14,25 @@ class Node {
 
 class Solution {
   public:
-    void pre(Node* root, vector<int> &ans){
-        if(root == NULL){
-            return;
-        }
-        
-        ans.push_back(root -> data);
-        pre(root -> left, ans);
-        pre(root -> right, ans);
-    }
-  
     vector<int> preOrder(Node* root) {
+        stack<Node*> st;
         vector<int> ans;
-        pre(root, ans);
+        st.push(root);
+        
+        while(!st.empty()){
+            Node* temp = st.top();
+            st.pop();
+            
+            ans.push_back(temp -> data);
+            
+            if(temp -> right != NULL){
+                st.push(temp -> right);
+            }
+            
+            if(temp -> left != NULL){
+                st.push(temp -> left);
+            }
+        }
         
         return ans;
     }
